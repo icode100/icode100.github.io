@@ -1,0 +1,57 @@
+{
+    "data": {
+        "allQuestionsCount": [
+            {
+                "difficulty": "All",
+                "count": 3215
+            },
+            {
+                "difficulty": "Easy",
+                "count": 810
+            },
+            {
+                "difficulty": "Medium",
+                "count": 1688
+            },
+            {
+                "difficulty": "Hard",
+                "count": 717
+            }
+        ],
+        "userContestRanking": {
+            "attendedContestsCount": 13,
+            "rating": 1571.230059741108,
+            "globalRanking": 146661,
+            "totalParticipants": 559284,
+            "topPercentage": 26.78,
+            "badge": null
+        },
+        "matchedUser": {
+            "username": "icode100",
+            "submitStats": {
+                "acSubmissionNum": [
+                    {
+                        "difficulty": "All",
+                        "count": 487,
+                        "submissions": 762
+                    },
+                    {
+                        "difficulty": "Easy",
+                        "count": 85,
+                        "submissions": 115
+                    },
+                    {
+                        "difficulty": "Medium",
+                        "count": 337,
+                        "submissions": 544
+                    },
+                    {
+                        "difficulty": "Hard",
+                        "count": 65,
+                        "submissions": 103
+                    }
+                ]
+            }
+        }
+    }
+}
