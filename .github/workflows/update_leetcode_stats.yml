@@ -28,6 +28,10 @@ jobs:
     - name: Run script
       run: |
         python -u scripts/fetch_and_generate.py
+    
+    - name: Download Resume
+      run: |
+        curl -L -o docs/resume.pdf 'https://docs.google.com/document/d/1TKUn1fPk_7bBKlIKeMY09giTOC13oHWY6x8WtDp-WCE/export?format=pdf'
 
     - name: Commit and push changes
       run: |

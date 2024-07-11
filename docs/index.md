@@ -123,7 +123,10 @@ Here, there are few of my achievements😅
 - I dont know if it is an achievement, but I recently scored a semeter grade point of 9.08 in my 6th semester of college😁
 ## Resume
 Please Zoom out a little bit to view clearly😌😌. You can always use `ctrl+-`
-<iframe src="https://docs.google.com/document/d/1TKUn1fPk_7bBKlIKeMY09giTOC13oHWY6x8WtDp-WCE/edit?usp=sharing"  style="width:750px;height:1000px"></iframe>
+<iframe src="resume.pdf" width="500px" height="600px">
+    This browser does not support PDFs. Please download the PDF to view it: 
+    <a href="resume.pdf">Download PDF</a>
+</iframe>
 
 ## Contact
 Reach Me out on:
