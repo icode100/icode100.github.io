@@ -3,9 +3,8 @@
 
 
 ## Home
-<p align='center' style="font-size:40px;font-family: monospace;font-weight:bolder;color:#FFB303">Ipsit Das</p>
 <p align="center">
-    <img src="https://readme-typing-svg.herokuapp.com?color=ffcc00&size=50&center=true&vCenter=true&width=550&height=70&lines=I'm+Ipsit+Das;An+AI+Enthusiast;A+Problem+Solve">
+    <img src="https://readme-typing-svg.herokuapp.com?color=ffcc00&size=50&center=true&vCenter=true&width=550&height=70&lines=I'm+An+AI+Enthusiast;A+Problem+Solver;A+math+lover">
 </p>
 
 ## About

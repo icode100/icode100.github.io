@@ -122,19 +122,19 @@ def generate_pie_chart(stats):
         horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
         connectionstyle = "angle,angleA=0,angleB={}".format(ang)
         ax.annotate(f'{label} {sizes[i]}/{total_sizes[i]}', xy=(x, y), xytext=(1.35*np.sign(x), 1.4*y),
-                    horizontalalignment=horizontalalignment, color='white', weight='bold', fontsize=12,
-                    arrowprops=dict(arrowstyle="-", color='white', connectionstyle=connectionstyle))
+                    horizontalalignment=horizontalalignment, color='black', weight='bold', fontsize=12,
+                    arrowprops=dict(arrowstyle="-", color='black', connectionstyle=connectionstyle))
 
     # Add additional information
-    plt.text(1.5, 1, f"Contests: {leetcode_data['contests']}", fontsize=12, color='white')
-    plt.text(1.5, 0.8, f"Rating: {leetcode_data['rating']}", fontsize=12, color='white')
-    plt.text(1.5, 0.6, f"Top %: {leetcode_data['top_percentage']}%", fontsize=12, color='white')
+    plt.text(1.5, 1, f"Contests: {leetcode_data['contests']}", fontsize=12, color='black')
+    plt.text(1.5, 0.8, f"Rating: {leetcode_data['rating']}", fontsize=12, color='black')
+    plt.text(1.5, 0.6, f"Top %: {leetcode_data['top_percentage']}%", fontsize=12, color='black')
 
     # Set background color
-    fig.patch.set_facecolor('black')
+    fig.patch.set_facecolor('white')
 
     # Save the figure
-    plt.savefig('docs/leetcode_stats.png', bbox_inches='tight', facecolor='black')
+    plt.savefig('docs/leetcode_stats.png', bbox_inches='tight', facecolor='white')
 
     # # Display the plot
     # plt.show()
