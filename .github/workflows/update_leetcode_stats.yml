@@ -27,7 +27,7 @@ jobs:
 
     - name: Run script
       run: |
-        python scripts/fetch_and_generate.py
+        python -u scripts/fetch_and_generate.py
 
     - name: Commit and push changes
       run: |

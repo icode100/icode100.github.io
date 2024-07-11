@@ -1,4 +1,4 @@
-<html lang="en">
+<!-- <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,7 +69,7 @@
 </body>
 </html>
 
-
+ -->
 
 <!-- markdown -->
 
@@ -82,10 +82,8 @@
     <img src="https://readme-typing-svg.herokuapp.com?color=ffcc00&size=50&center=true&vCenter=true&width=550&height=70&lines=I'm+Ipsit+Das;An+AI+Enthusiast;A+Problem+Solve">
 </p>
 
-
-
-
 ## About
+<img src='profile_picture.png' style="border-radius:10000px; border:4px solid white; width:150px">
 Hello! I'm Ipsit Das, an undergraduate student pursuing a B.Tech. degree in Computer Science and Engineering at the National Institute of Technology, Andhra Pradesh. With a passion for machine learning and artificial intelligence, I am committed to continuously learning and contributing to impactful AI-driven projects.
 
 As a dedicated and responsible student, I have developed a strong foundation in various domains of computer science. My expertise includes working with frameworks like PyTorch, Express and React, which I have applied in numerous projects.
