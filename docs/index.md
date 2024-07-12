@@ -4,7 +4,7 @@
 
 ## Home
 <p align="center">
-    <img src="https://readme-typing-svg.herokuapp.com?color=ffcc00&size=50&center=true&vCenter=true&width=550&height=70&lines=I'm+An+AI+Enthusiast;A+Problem+Solver;A+math+lover">
+    <img src="https://readme-typing-svg.herokuapp.com?color=3e70b1&size=50&center=true&vCenter=true&width=550&height=70&lines=I'm+An+AI+Enthusiast;A+Problem+Solver;A+math+lover">
 </p>
 
 ## About
@@ -18,67 +18,67 @@ I enjoy coding and am particularly passionate about exploring the latest advance
 ## Skills
 So let me speak something about my skills. 
 <div style="width: 100%; background-color: #ddd;">
-  <div style="width: 80%; height: 24px; background-color: #ffcc00; text-align: center; line-height: 24px; color: black;">
+  <div style="width: 80%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: black;">
     Python 
   </div>
 </div>
 <hr>
 <div style="width: 100%; background-color: #ddd;">
-  <div style="width: 60%; height: 24px; background-color: #ffcc00; text-align: center; line-height: 24px; color: black;">
+  <div style="width: 60%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: black;">
     C++
   </div>
 </div>
 <hr>
 <div style="width: 100%; background-color: #ddd;">
-  <div style="width: 50%; height: 24px; background-color: #ffcc00; text-align: center; line-height: 24px; color: black;">
+  <div style="width: 50%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: black;">
     Java Script
   </div>
 </div>
 <hr>
 <div style="width: 100%; background-color: #ddd;">
-  <div style="width: 40%; height: 24px; background-color:#ffcc00; text-align: center; line-height: 24px; color: black;">
+  <div style="width: 40%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: black;">
     Java
   </div>
 </div>
 <hr>
 <div style="width: 100%; background-color: #ddd;">
-  <div style="width: 70%; height: 24px; background-color:#ffcc00; text-align: center; line-height: 24px; color: black;">
+  <div style="width: 70%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: black;">
     SQL
   </div>
 </div>
 <hr>
 <div style="width: 100%; background-color: #ddd;">
-  <div style="width: 70%; height: 24px; background-color: #ffcc00; text-align: center; line-height: 24px; color: black;">
+  <div style="width: 70%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: black;">
     pyTorch
   </div>
 </div>
 <hr>
 <div style="width: 100%; background-color: #ddd;">
-  <div style="width: 65%; height: 24px; background-color: #ffcc00; text-align: center; line-height: 24px; color: black;">
+  <div style="width: 65%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: black;">
     React
   </div>
 </div>
 <hr>
 <div style="width: 100%; background-color: #ddd;">
-  <div style="width: 65%; height: 24px; background-color: #ffcc00; text-align: center; line-height: 24px; color: black;">
+  <div style="width: 65%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: black;">
     Express
   </div>
 </div>
 <hr>
 <div style="width: 100%; background-color: #ddd;">
-  <div style="width: 65%; height: 24px; background-color:#ffcc00; text-align: center; line-height: 24px; color: black;">
+  <div style="width: 65%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: black;">
     Machine learning 
   </div>
 </div>
 <hr>
 <div style="width: 100%; background-color: #ddd;">
-  <div style="width: 75%; height: 24px; background-color:#ffcc00; text-align: center; line-height: 24px; color: black;">
+  <div style="width: 75%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: black;">
     Natural Language Processing
   </div>
 </div>
 <hr>
 <div style="width: 100%; background-color: #ddd;">
-  <div style="width: 60%; height: 24px; background-color:#ffcc00; text-align: center; line-height: 24px; color: black;">
+  <div style="width: 60%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: black;">
     Computer Vision
   </div>
 </div>
@@ -122,7 +122,6 @@ These are my leetcode stats. Check me out on [icode100](https://leetcode.com/ico
 <img alt="LeetCode Stat Card" style="border-radius:24px;box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.2);" src="leetcode_stats.png" />
 
 ## Resume
-Please Zoom out a little bit to view clearly😌😌. You can always use `ctrl+-`
 <iframe src="resume.pdf" width="600px" height="600px">
     This browser does not support PDFs. Please download the PDF to view it: 
     <a href="resume.pdf">Download PDF</a>
