@@ -87,7 +87,7 @@ So let me speak something about my skills.
 ## Achievements
 Here, there are few of my achievements😅
 - Over 450 problems on [leetcode](https://www.leetcode.com/icode100)
-- I have been in the top 26% of the leetcoders in the weekly contest with highest rating of 1582
+- I have been in the top 26% of the leetcoders in the weekly contest with highest rating of 1578
 - I also secured position in the top 1% among 16686 students in [NPTEL Online Certification Examination for Cloud Computing](https://drive.google.com/file/d/11kcgGLjRE6sQyTxL6D0mjccPphTeCCGf/view) (Click on the link to view the certificate 😌)
 - I dont know if it is an achievement, but I recently scored a semeter grade point of 9.08 in my 6th semester of college😁
 
