@@ -17,68 +17,68 @@ I enjoy coding and am particularly passionate about exploring the latest advance
 
 ## Skills
 So let me speak something about my skills. 
-<div style="width: 100%; background-color: #ddd;">
-  <div style="width: 80%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: #ffcc00;">
+<div style="width: 100%; background-color: #ddd;border-radius:100px">
+  <div style="width: 80%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: #ffcc00;border-radius:100px">
     Python 
   </div>
 </div>
 <hr>
-<div style="width: 100%; background-color: #ddd;">
-  <div style="width: 60%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: #ffcc00;">
+<div style="width: 100%; background-color: #ddd;border-radius:100px">
+  <div style="width: 60%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: #ffcc00;border-radius:100px">
     C++
   </div>
 </div>
 <hr>
-<div style="width: 100%; background-color: #ddd;">
-  <div style="width: 50%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: #ffcc00;">
+<div style="width: 100%; background-color: #ddd;border-radius:100px">
+  <div style="width: 50%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: #ffcc00;border-radius:100px">
     Java Script
   </div>
 </div>
 <hr>
-<div style="width: 100%; background-color: #ddd;">
-  <div style="width: 40%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: #ffcc00;">
+<div style="width: 100%; background-color: #ddd;border-radius:100px">
+  <div style="width: 40%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: #ffcc00;border-radius:100px">
     Java
   </div>
 </div>
 <hr>
-<div style="width: 100%; background-color: #ddd;">
-  <div style="width: 70%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: #ffcc00;">
+<div style="width: 100%; background-color: #ddd;border-radius:100px">
+  <div style="width: 70%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: #ffcc00;border-radius:100px">
     SQL
   </div>
 </div>
 <hr>
-<div style="width: 100%; background-color: #ddd;">
-  <div style="width: 70%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: #ffcc00;">
+<div style="width: 100%; background-color: #ddd;border-radius:100px">
+  <div style="width: 70%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: #ffcc00;border-radius:100px">
     pyTorch
   </div>
 </div>
 <hr>
-<div style="width: 100%; background-color: #ddd;">
-  <div style="width: 65%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: #ffcc00;">
+<div style="width: 100%; background-color: #ddd;border-radius:100px">
+  <div style="width: 65%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: #ffcc00;border-radius:100px">
     React
   </div>
 </div>
 <hr>
-<div style="width: 100%; background-color: #ddd;">
-  <div style="width: 65%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: #ffcc00;">
+<div style="width: 100%; background-color: #ddd;border-radius:100px">
+  <div style="width: 65%; height: 24px; background-color: #3870b1; text-align: center; line-height: 24px; color: #ffcc00;border-radius:100px">
     Express
   </div>
 </div>
 <hr>
-<div style="width: 100%; background-color: #ddd;">
-  <div style="width: 65%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: #ffcc00;">
+<div style="width: 100%; background-color: #ddd;border-radius:100px">
+  <div style="width: 65%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: #ffcc00;border-radius:100px">
     Machine learning 
   </div>
 </div>
 <hr>
-<div style="width: 100%; background-color: #ddd;">
-  <div style="width: 75%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: #ffcc00;">
+<div style="width: 100%; background-color: #ddd;border-radius:100px">
+  <div style="width: 75%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: #ffcc00;border-radius:100px">
     Natural Language Processing
   </div>
 </div>
 <hr>
-<div style="width: 100%; background-color: #ddd;">
-  <div style="width: 60%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: #ffcc00;">
+<div style="width: 100%; background-color: #ddd;border-radius:100px">
+  <div style="width: 60%; height: 24px; background-color:#3870b1; text-align: center; line-height: 24px; color: #ffcc00;border-radius:100px">
     Computer Vision
   </div>
 </div>
