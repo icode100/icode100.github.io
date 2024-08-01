@@ -3,7 +3,7 @@
         "allQuestionsCount": [
             {
                 "difficulty": "All",
-                "count": 3236
+                "count": 3237
             },
             {
                 "difficulty": "Easy",
@@ -11,7 +11,7 @@
             },
             {
                 "difficulty": "Medium",
-                "count": 1699
+                "count": 1700
             },
             {
                 "difficulty": "Hard",
@@ -19,11 +19,11 @@
             }
         ],
         "userContestRanking": {
-            "attendedContestsCount": 15,
-            "rating": 1584.2264282390313,
-            "globalRanking": 137949,
-            "totalParticipants": 571156,
-            "topPercentage": 24.68,
+            "attendedContestsCount": 16,
+            "rating": 1626.379454971943,
+            "globalRanking": 108019,
+            "totalParticipants": 573899,
+            "topPercentage": 19.28,
             "badge": null
         },
         "matchedUser": {
@@ -33,7 +33,7 @@
                     {
                         "difficulty": "All",
                         "count": 508,
-                        "submissions": 793
+                        "submissions": 795
                     },
                     {
                         "difficulty": "Easy",
@@ -43,12 +43,12 @@
                     {
                         "difficulty": "Medium",
                         "count": 349,
-                        "submissions": 566
+                        "submissions": 567
                     },
                     {
                         "difficulty": "Hard",
                         "count": 70,
-                        "submissions": 108
+                        "submissions": 109
                     }
                 ]
             }
