@@ -32,18 +32,18 @@
                 "acSubmissionNum": [
                     {
                         "difficulty": "All",
-                        "count": 520,
-                        "submissions": 825
+                        "count": 521,
+                        "submissions": 829
                     },
                     {
                         "difficulty": "Easy",
-                        "count": 94,
-                        "submissions": 126
+                        "count": 95,
+                        "submissions": 127
                     },
                     {
                         "difficulty": "Medium",
                         "count": 355,
-                        "submissions": 588
+                        "submissions": 591
                     },
                     {
                         "difficulty": "Hard",
