@@ -122,8 +122,7 @@ These are my leetcode stats. Check me out on [icode100](https://leetcode.com/ico
 <img alt="LeetCode Stat Card" style="border-radius:24px;box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.2);" src="leetcode_stats.png" />
 
 ## Resume
-<iframe src="https://docs.google.com/document/d/15748BDn19wP__MkvK9YigI-pReUwZtTdCU5KHjA17Ik/pub?embedded=true"></iframe>
-
+<iframe src="https://docs.google.com/document/d/15748BDn19wP__MkvK9YigI-pReUwZtTdCU5KHjA17Ik/pub" width="600px" height="600px">
 ## Contact
 Reach Me out on:
 <p align="left">
