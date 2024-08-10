@@ -32,13 +32,13 @@
                 "acSubmissionNum": [
                     {
                         "difficulty": "All",
-                        "count": 521,
-                        "submissions": 832
+                        "count": 522,
+                        "submissions": 834
                     },
                     {
                         "difficulty": "Easy",
-                        "count": 95,
-                        "submissions": 128
+                        "count": 96,
+                        "submissions": 130
                     },
                     {
                         "difficulty": "Medium",
