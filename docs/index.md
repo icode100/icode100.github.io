@@ -122,7 +122,7 @@ These are my leetcode stats. Check me out on [icode100](https://leetcode.com/ico
 <img alt="LeetCode Stat Card" style="border-radius:24px;box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.2);" src="leetcode_stats.png" />
 
 ## Resume
-<iframe height='600px' width='650px' src='resume.pdf'></iframe>
+<iframe height='600px' width='600px' src='resume.pdf'></iframe>
 
 Click The button below to donwload the resume.
 
