@@ -116,11 +116,6 @@ Here's just the recent ones for more apps and code checkout my [github account](
     </div>
 </div>
 
-## Competitve Programming
-Yes I am also into CP 😎. Though I am a newbie 😉 but still have a look at them. 
-
-<img src="https://github.com/icode100/cc-visualizer/blob/main/src/main/java/com/ccvisualizer/ccvisualizer/output.svg" alt="CodeChef status">
-
 ## Leetcode
 These are my leetcode stats. Check me out on [icode100](https://leetcode.com/icode100) 😊
 
