@@ -3,19 +3,19 @@
         "allQuestionsCount": [
             {
                 "difficulty": "All",
-                "count": 3391
+                "count": 3395
             },
             {
                 "difficulty": "Easy",
-                "count": 843
+                "count": 844
             },
             {
                 "difficulty": "Medium",
-                "count": 1769
+                "count": 1771
             },
             {
                 "difficulty": "Hard",
-                "count": 779
+                "count": 780
             }
         ],
         "userContestRanking": {
@@ -33,7 +33,7 @@
                     {
                         "difficulty": "All",
                         "count": 548,
-                        "submissions": 970
+                        "submissions": 973
                     },
                     {
                         "difficulty": "Easy",
@@ -43,12 +43,12 @@
                     {
                         "difficulty": "Medium",
                         "count": 367,
-                        "submissions": 683
+                        "submissions": 685
                     },
                     {
                         "difficulty": "Hard",
                         "count": 76,
-                        "submissions": 132
+                        "submissions": 133
                     }
                 ]
             }
