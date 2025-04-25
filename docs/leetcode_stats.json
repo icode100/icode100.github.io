@@ -19,12 +19,14 @@
             }
         ],
         "userContestRanking": {
-            "attendedContestsCount": 23,
-            "rating": 1797.947973638229,
-            "globalRanking": 51249,
-            "totalParticipants": 687200,
-            "topPercentage": 7.69,
-            "badge": null
+            "attendedContestsCount": 24,
+            "rating": 1875.794032644952,
+            "globalRanking": 33851,
+            "totalParticipants": 689002,
+            "topPercentage": 5.09,
+            "badge": {
+                "name": "Knight"
+            }
         },
         "matchedUser": {
             "username": "icode100",
@@ -32,8 +34,8 @@
                 "acSubmissionNum": [
                     {
                         "difficulty": "All",
-                        "count": 680,
-                        "submissions": 1450
+                        "count": 682,
+                        "submissions": 1452
                     },
                     {
                         "difficulty": "Easy",
@@ -42,8 +44,8 @@
                     },
                     {
                         "difficulty": "Medium",
-                        "count": 446,
-                        "submissions": 1034
+                        "count": 448,
+                        "submissions": 1036
                     },
                     {
                         "difficulty": "Hard",
