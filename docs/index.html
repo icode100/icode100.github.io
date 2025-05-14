@@ -71,7 +71,7 @@
                                     <!-- Existing image wrapper and text container -->
                                     <div
                                         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group-hover:top-6 group-hover:left-6 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-500 z-10">
-                                        <img src="../media/profile_picture.png" alt="Your Photo"
+                                        <img src="media/profile_picture.png" alt="Your Photo"
                                             class="w-48 h-48 rounded-full object-cover group-hover:w-24 group-hover:h-24 transition-all duration-500" />
                                     </div>
 
@@ -161,7 +161,7 @@
                                             <div class="relative group overflow-visible h-full">
                                                 <div
                                                     class="w-full h-full bg-black rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-[1.05] group-hover:z-20 relative">
-                                                    <img src="../media/leetcode-logo.png" alt="LeetCode"
+                                                    <img src="media/leetcode-logo.png" alt="LeetCode"
                                                         class="w-24 h-24 transition-opacity duration-300 group-hover:opacity-0" />
                                                     <div
                                                         class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 px-4 py-6 flex flex-col gap-4 items-center justify-center z-10">
@@ -176,7 +176,7 @@
                                                                       percentile: 0,
                                                                       totalParticipants: 692597,
                                                                       async fetchData() {
-                                                                        const response = await fetch('../data/leetcode_stats.json');
+                                                                        const response = await fetch('data/leetcode_stats.json');
                                                                         const data = await response.json();
                                                                         this.percentile = data.data.userContestRanking.topPercentage;
                                                                       },
@@ -225,7 +225,7 @@
                                             <div class="relative group overflow-visible h-full">
                                                 <div
                                                     class="w-full h-full bg-black rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-[1.05] group-hover:z-20 relative">
-                                                    <img src="../media/codechef-logo.png" alt="CodeChef"
+                                                    <img src="media/codechef-logo.png" alt="CodeChef"
                                                         class="w-24 h-24 transition-opacity duration-300 group-hover:opacity-0" />
                                                     <div
                                                         class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 px-4 py-6 flex flex-col gap-4 items-center justify-center z-10">

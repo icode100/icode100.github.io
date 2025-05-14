@@ -102,7 +102,7 @@ document.addEventListener("click", function (e) {
     }
 });
 
-fetch('../data/leetcode_stats.json')
+fetch('data/leetcode_stats.json')
     .then(res => res.json())
     .then(data => {
         const stats = data.data;
@@ -123,7 +123,7 @@ fetch('../data/leetcode_stats.json')
 
         if (badge) {
             console.log(`Badge found: ${badge}`); // Debugging: Log badge name
-            badgeImg.src = `../media/${badge.toLowerCase()}-badge.gif`; // Dynamically set badge image
+            badgeImg.src = `media/${badge.toLowerCase()}-badge.gif`; // Dynamically set badge image
             badgeImg.alt = `${badge} Badge`;
             badgeImg.classList.remove('hidden'); // Show badge image
 
@@ -137,7 +137,7 @@ fetch('../data/leetcode_stats.json')
     })
     .catch(err => console.error('Error fetching LeetCode stats:', err)); // Debugging: Log fetch errors
 
-fetch('../data/codechef_stats.json')
+fetch('data/codechef_stats.json')
     .then(res => res.json())
     .then(data => {
         document.getElementById('cc-rating').textContent = data.rating;
@@ -182,7 +182,7 @@ fetch('../data/codechef_stats.json')
 
 // skill page
 const skills = [
-    { name: "DSA", icon: "../media/dsa.png", percent: 90, title: "DS and Algo" },
+    { name: "DSA", icon: "media/dsa.png", percent: 90, title: "DS and Algo" },
     { name: "Python", icon: "https://img.icons8.com/3d-fluency/1500/python.png", percent: 80, title: "Python" },
     { name: "C++", icon: "https://img.icons8.com/fluency/1500/c-plus-plus-logo.png", percent: 60, title: "C++" },
     { name: "Java", icon: "https://img.icons8.com/3d-fluency/1500/java-coffee-cup-logo.png", percent: 50, title: "Java" },
@@ -194,7 +194,7 @@ const skills = [
     { name: "NodeJS", icon: "https://img.icons8.com/color/1500/nodejs.png", percent: 60, title: "NodeJS" },
     { name: "ReactJS", icon: "https://img.icons8.com/external-tal-revivo-color-tal-revivo/100/external-react-a-javascript-library-for-building-user-interfaces-logo-color-tal-revivo.png", percent: 65, title: "ReactJS" },
     { name: "PyTorch", icon: "https://img.icons8.com/arcade/1500/pytorch.png", percent: 70, title: "PyTorch" },
-    { name: "Langchain", icon: "../media/langchain-color.png", percent: 50, title: "Langchain" },
+    { name: "Langchain", icon: "media/langchain-color.png", percent: 50, title: "Langchain" },
     { name: "Hadoop", icon: "https://img.icons8.com/color/1500/hadoop-distributed-file-system.png", percent: 30, title: "Hadoop" },
 ];
 
@@ -223,22 +223,22 @@ function createSkillCard({ icon, percent, title }) {
     {
       link: "https://github.com/icode100/lape",
       description: "Created a model using Laplace distribution for answering complex queries over Knowledge graphs that performs better than the current state of the art probabilistic model.",
-      image: "../media/CQR_Project.png"
+      image: "media/CQR_Project.png"
     },
     {
       link: "https://github.com/icode100/anicygan",
       description: "Used CycleGAN to generate anime images from real images. The model is trained on a dataset of 1000 anime images and 1000 real images.",
-      image: "../media/anicygan.png"
+      image: "media/anicygan.png"
     },
     {
       link: "https://github.com/icode100/portgenio",
       description: "A portfolio generator that creates a portfolio website using information given by the user. User can choose from several designs available.",
-      image: "../media/portgen.png"
+      image: "media/portgen.png"
     },
     {
       link: "https://github.com/icode100/epic1",
       description: "A hostel management system made using Django and React.js with SQLite as database.",
-      image: "../media/homan.png"
+      image: "media/homan.png"
     }
   ];
 
