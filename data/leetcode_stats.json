@@ -3,19 +3,19 @@
         "allQuestionsCount": [
             {
                 "difficulty": "All",
-                "count": 3544
+                "count": 3549
             },
             {
                 "difficulty": "Easy",
-                "count": 875
+                "count": 876
             },
             {
                 "difficulty": "Medium",
-                "count": 1839
+                "count": 1840
             },
             {
                 "difficulty": "Hard",
-                "count": 830
+                "count": 833
             }
         ],
         "userContestRanking": {
@@ -27,6 +27,7 @@
             "badge": {
                 "name": "Knight"
             }
+            
         },
         "matchedUser": {
             "username": "icode100",
@@ -34,18 +35,18 @@
                 "acSubmissionNum": [
                     {
                         "difficulty": "All",
-                        "count": 689,
-                        "submissions": 1488
+                        "count": 691,
+                        "submissions": 1497
                     },
                     {
                         "difficulty": "Easy",
-                        "count": 120,
-                        "submissions": 185
+                        "count": 121,
+                        "submissions": 186
                     },
                     {
                         "difficulty": "Medium",
-                        "count": 454,
-                        "submissions": 1071
+                        "count": 455,
+                        "submissions": 1079
                     },
                     {
                         "difficulty": "Hard",

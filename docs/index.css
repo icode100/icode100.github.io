@@ -1,0 +1,187 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+/* Prevent content from shifting during scroll */
+.snap-x>* {
+  flex: 0 0 100%;
+}
+
+/* Ensure container maintains width during transitions */
+.relative {
+  overflow: hidden;
+}
+
+/* Add these new styles */
+.text-base {
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+
+/* Ensure proper spacing between paragraphs */
+.space-y-4>*+* {
+  margin-top: 1rem;
+}
+
+/* Make navigation arrows more visible */
+button {
+  font-size: 1.5rem;
+  padding: 0.75rem 1.25rem;
+}
+
+/* Navigation arrow styles */
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.pointer-events-auto {
+  pointer-events: auto;
+}
+
+button.pointer-events-auto {
+  z-index: 50;
+}
+
+/* Enhanced navigation arrow styles */
+.shadow-2xl {
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  box-shadow: var(--tw-shadow);
+}
+
+button:hover {
+  --tw-shadow: 0 35px 60px -15px rgb(0 0 0 / 0.3);
+  box-shadow: var(--tw-shadow);
+}
+
+/* Highlight active link in navigation pane */
+#sidebar a.bg-blue-500 {
+  background-color: #2563eb;
+  /* Tailwind's blue-500 */
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Ensure arrows are positioned outside the slide region */
+.absolute {
+  position: absolute;
+}
+
+.-left-12 {
+  left: -3rem;
+}
+
+.-right-12 {
+  right: -3rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.bottom-0 {
+  bottom: 0;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.bg-zinc-800 {
+  background-color: #27272a;
+  /* Tailwind's zinc-800 */
+}
+
+.text-white {
+  color: white;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.space-x-6>*+* {
+  margin-left: 1.5rem;
+}
+
+.hover\:text-blue-500:hover {
+  color: #2563eb;
+  /* Tailwind's blue-500 */
+}
+
+.transition-colors {
+  transition: color 0.3s ease;
+}
+
+.w-8 {
+  width: 2rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+/* Initial hidden state */
+.star.hidden {
+  opacity: 0;
+  transform: scale(0.5); /* Start smaller */
+}
+
+/* Smooth fade-in and scale-up animation */
+.star.fade-in {
+  opacity: 1;
+  transform: scale(1); /* Scale to normal size */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+}
+
+
+.ubuntu-regular {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.winky-rough-weight {
+  font-family: "Winky Rough", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}

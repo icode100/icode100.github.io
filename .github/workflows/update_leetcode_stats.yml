@@ -31,7 +31,7 @@ jobs:
     
     - name: Download Resume
       run: |
-        curl -L -o docs/resume.pdf 'https://drive.google.com/uc?export=download&id=13HDSFezEFa6c4yTCZcUjaoZfVQkZRQ5X'
+        curl -L -o media/resume.pdf 'https://drive.google.com/uc?export=download&id=13HDSFezEFa6c4yTCZcUjaoZfVQkZRQ5X'
 
     - name: Commit and push changes
       run: |

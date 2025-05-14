@@ -3,6 +3,7 @@ import json
 import matplotlib.pyplot as plt
 import numpy as np
 import os 
+from bs4 import BeautifulSoup  # ensure you have installed beautifulsoup4
 
 
 def fetch_and_save_github_profile_picture(username, save_path):
@@ -64,92 +65,72 @@ def get_leetcode_stats(username):
     # print(response.json())
     return response.json()
 
-def load_json_file(filename,data_set):
-    with open(filename, 'r') as json_file:
-        stats = json.load(json_file)['data']['matchedUser']['submitStats']['acSubmissionNum']
-    for st in stats:
-        if st['difficulty'] in data_set:
-            data_set[st['difficulty']]['solved'] = st['count']
-    with open(filename, 'r') as json_file:
-        stats = json.load(json_file)['data']
-    for st in stats["allQuestionsCount"]:
-        if st['difficulty'] in data_set:
-            data_set[st['difficulty']]['total'] = st['count']
-    data_set['contests'] = stats['userContestRanking']['attendedContestsCount']
-    data_set['rating'] = int(stats['userContestRanking']['rating'])
-    data_set['top_percentage'] = float(f'{stats['userContestRanking']['topPercentage']:.2f}')
-
-def generate_pie_chart(stats):
-    leetcode_data = {
-        "Easy": {"solved": 0, "total": 0},
-        "Medium": {"solved": 0, "total": 0},
-        "Hard": {"solved": 0, "total": 0},
-        "contests": 0,
-        "rating": 0,
-        "top_percentage": 0
-    }
-    load_json_file('docs/leetcode_stats.json',leetcode_data)
-    # Calculate total solved and total problems
-    total_solved = sum([leetcode_data[difficulty]["solved"] for difficulty in ["Easy", "Medium", "Hard"]])
-    total_problems = sum([leetcode_data[difficulty]["total"] for difficulty in ["Easy", "Medium", "Hard"]])
-
-    # Define the data for the pie chart
-    labels = ['Easy', 'Medium', 'Hard']
-    sizes = [leetcode_data[label]["solved"] for label in labels]
-    total_sizes = [leetcode_data[label]["total"] for label in labels]
-    colors = ['#4CAF50', '#FFC107', '#F44336']
-
-    # Create the pie chart
-    fig, ax = plt.subplots()
-
-    wedges, texts = ax.pie(
-        sizes, labels=None, colors=colors, autopct=None,
-        startangle=90, wedgeprops=dict(width=0.3, edgecolor='w')
-    )
-
-    # Draw center circle for the donut chart effect
-    centre_circle = plt.Circle((0,0),0.70,fc='black')
-    fig.gca().add_artist(centre_circle)
-
-    # Draw the text in the center
-    ax.text(0, 0, f'{total_solved}\n____\n\n{total_problems}', color='white', ha='center', va='center', fontsize=14)
-
-    # Add text labels manually
-    for i, (wedge, label) in enumerate(zip(wedges, labels)):
-        ang = (wedge.theta2 - wedge.theta1)/2. + wedge.theta1
-        y = np.sin(np.deg2rad(ang))
-        x = np.cos(np.deg2rad(ang))
-        horizontalalignment = {-1: "right", 1: "left"}[int(np.sign(x))]
-        connectionstyle = "angle,angleA=0,angleB={}".format(ang)
-        ax.annotate(f'{label} {sizes[i]}/{total_sizes[i]}', xy=(x, y), xytext=(1.35*np.sign(x), 1.4*y),
-                    horizontalalignment=horizontalalignment, color='black', weight='bold', fontsize=12,
-                    arrowprops=dict(arrowstyle="-", color='black', connectionstyle=connectionstyle))
-
-    # Add additional information
-    plt.text(1.5, 1, f"Contests: {leetcode_data['contests']}", fontsize=12, color='black')
-    plt.text(1.5, 0.8, f"Rating: {leetcode_data['rating']}", fontsize=12, color='black')
-    plt.text(1.5, 0.6, f"Top %: {leetcode_data['top_percentage']}%", fontsize=12, color='black')
-
-    # Set background color
-    fig.patch.set_facecolor('white')
-
-    # Save the figure
-    plt.savefig('docs/leetcode_stats.png', bbox_inches='tight', facecolor='white')
-
-    # # Display the plot
-    # plt.show()
-
-
 def save_json_to_file(data, filename):
     with open(filename, 'w') as json_file:
         json.dump(data, json_file, indent=4)
 
+def get_codechef_stats(username):
+    url = f"https://www.codechef.com/users/{username}"
+    response = requests.get(url)
+    if response.status_code != 200:
+        print(f"Failed to fetch CodeChef data. Status code: {response.status_code}")
+        return {}
+    
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    # Extract the rating
+    rating_elem = soup.find("div", class_="rating-number")
+    rating = rating_elem.text.strip() if rating_elem else "N/A"
+    rating = int(rating) if rating != "N/A" else 0
+    # Extract the stars (if available)
+    star_elem = soup.find("span", class_="rating-star")
+    stars = star_elem.text.strip() if star_elem else "N/A"
+    
+    # Extract global rank and country rank (if available)
+    global_rank = "N/A"
+    country_rank = "N/A"
+    ranks_div = soup.find("div", class_="rating-ranks")
+    if ranks_div:
+        rank_links = ranks_div.find_all("a")
+        if rank_links:
+            # Assuming the first link represents the global rank
+            global_rank = rank_links[0].text.strip()
+            # And the second link (if exists) represents the country rank
+            if len(rank_links) > 1:
+                country_rank = rank_links[1].text.strip()
+    global_rank = int(global_rank.replace(',', '')) if global_rank != "N/A" else 0
+    country_rank = int(country_rank.replace(',', '')) if country_rank != "N/A" else 0
+    if rating<1400: stars = 1
+    elif rating<1600: stars = 2
+    elif rating<1800: stars = 3
+    elif rating<2000: stars = 4
+    elif rating<2200: stars = 5
+    elif rating<2500: stars = 6
+    else: stars = 7
+    
+    codechef_stats = {
+        "username": username,
+        "rating": rating,
+        "stars": stars,
+        "global_rank": global_rank,
+        "country_rank": country_rank
+    }
+    
+    return codechef_stats
+
+def save_codechef_stats(username):
+    stats = get_codechef_stats(username)
+    with open('data/codechef_stats.json', 'w') as json_file:
+        json.dump(stats, json_file, indent=4)
+    print(f"CodeChef stats saved to docs/codechef_stats.json")
+
+# Call the function with your CodeChef id:
+save_codechef_stats('icode100')
 
 username = 'icode100'
 stats = get_leetcode_stats(username)
-save_json_to_file(stats, 'docs/leetcode_stats.json')
-generate_pie_chart(stats)
-save_path = 'docs/profile_picture.png'
+save_json_to_file(stats, 'data/leetcode_stats.json')
+save_path = 'media/profile_picture.png'
 os.makedirs(os.path.dirname(save_path), exist_ok=True)
 fetch_and_save_github_profile_picture(username, save_path)
 
