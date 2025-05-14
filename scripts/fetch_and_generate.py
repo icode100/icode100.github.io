@@ -134,4 +134,3 @@ save_path = 'media/profile_picture.png'
 os.makedirs(os.path.dirname(save_path), exist_ok=True)
 fetch_and_save_github_profile_picture(username, save_path)
 
-
