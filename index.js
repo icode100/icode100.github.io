@@ -231,9 +231,9 @@ function createSkillCard({ icon, percent, title }) {
       image: "media/anicygan.png"
     },
     {
-      link: "https://github.com/icode100/portgenio",
-      description: "A portfolio generator that creates a portfolio website using information given by the user. User can choose from several designs available.",
-      image: "media/portgen.png"
+      link: "https://github.com/icode100/Revsy",
+      description: "This is a note taking app but curated and designed for extensive usage by students/working professionals preparing for interviews. Here we are trying to make Revisions-Easy!!!",
+      image: "media/Revsy.png"
     },
     {
       link: "https://github.com/icode100/epic1",
