@@ -3,7 +3,7 @@
         "allQuestionsCount": [
             {
                 "difficulty": "All",
-                "count": 3625
+                "count": 3626
             },
             {
                 "difficulty": "Easy",
@@ -11,7 +11,7 @@
             },
             {
                 "difficulty": "Medium",
-                "count": 1884
+                "count": 1885
             },
             {
                 "difficulty": "Hard",
@@ -21,9 +21,9 @@
         "userContestRanking": {
             "attendedContestsCount": 26,
             "rating": 1911.267,
-            "globalRanking": 28464,
-            "totalParticipants": 720317,
-            "topPercentage": 4.11,
+            "globalRanking": 28570,
+            "totalParticipants": 725492,
+            "topPercentage": 4.09,
             "badge": {
                 "name": "Knight"
             }
