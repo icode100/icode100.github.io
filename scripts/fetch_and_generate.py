@@ -71,7 +71,10 @@ def save_json_to_file(data, filename):
 
 def get_codechef_stats(username):
     url = f"https://www.codechef.com/users/{username}"
-    response = requests.get(url)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+    }
+    response = requests.get(url, headers=headers)
     if response.status_code != 200:
         print(f"Failed to fetch CodeChef data. Status code: {response.status_code}")
         return {}
@@ -82,6 +85,7 @@ def get_codechef_stats(username):
     rating_elem = soup.find("div", class_="rating-number")
     rating = rating_elem.text.strip() if rating_elem else "N/A"
     rating = int(rating) if rating != "N/A" else 0
+    
     # Extract the stars (if available)
     star_elem = soup.find("span", class_="rating-star")
     stars = star_elem.text.strip() if star_elem else "N/A"
@@ -91,21 +95,22 @@ def get_codechef_stats(username):
     country_rank = "N/A"
     ranks_div = soup.find("div", class_="rating-ranks")
     if ranks_div:
-        rank_links = ranks_div.find_all("a")
+        rank_links = ranks_div.find_all("strong")
         if rank_links:
-            # Assuming the first link represents the global rank
-            global_rank = rank_links[0].text.strip()
-            # And the second link (if exists) represents the country rank
-            if len(rank_links) > 1:
-                country_rank = rank_links[1].text.strip()
+            global_rank = rank_links[0].text.strip() if len(rank_links) > 0 else "N/A"
+            country_rank = rank_links[1].text.strip() if len(rank_links) > 1 else "N/A"
+    
+    # Convert ranks to integers if possible
     global_rank = int(global_rank.replace(',', '')) if global_rank != "N/A" else 0
     country_rank = int(country_rank.replace(',', '')) if country_rank != "N/A" else 0
-    if rating<1400: stars = 1
-    elif rating<1600: stars = 2
-    elif rating<1800: stars = 3
-    elif rating<2000: stars = 4
-    elif rating<2200: stars = 5
-    elif rating<2500: stars = 6
+    
+    # Calculate stars based on rating
+    if rating < 1400: stars = 1
+    elif rating < 1600: stars = 2
+    elif rating < 1800: stars = 3
+    elif rating < 2000: stars = 4
+    elif rating < 2200: stars = 5
+    elif rating < 2500: stars = 6
     else: stars = 7
     
     codechef_stats = {
