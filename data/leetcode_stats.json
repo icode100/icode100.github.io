@@ -35,7 +35,7 @@
                     {
                         "difficulty": "All",
                         "count": 726,
-                        "submissions": 1602
+                        "submissions": 1605
                     },
                     {
                         "difficulty": "Easy",
@@ -45,12 +45,12 @@
                     {
                         "difficulty": "Medium",
                         "count": 481,
-                        "submissions": 1159
+                        "submissions": 1160
                     },
                     {
                         "difficulty": "Hard",
                         "count": 117,
-                        "submissions": 235
+                        "submissions": 237
                     }
                 ]
             }
