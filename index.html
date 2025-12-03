@@ -1,337 +1,734 @@
 <!DOCTYPE html>
-<html class="h-full" lang="en">
-
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script src="index.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
-        rel="stylesheet">
-    <title>icode100</title>
-    <link rel="icon" type="image/x-icon" href="media/profile_picture.png">
+    <title>Ipsit Das | Creative Developer</title>
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/3d-fluency/94/resume-website.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Three.js for 3D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        :root {
+            --neon-cyan: #06b6d4;
+            --neon-purple: #8b5cf6;
+        }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0f0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-cyan);
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glass-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+        }
+
+        /* Text Gradient */
+        .text-gradient {
+            background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Canvas Background */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* Loader */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .nav-link.active {
+            color: var(--neon-cyan);
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        .nav-link:hover {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+        }
+
+        /* --- Skill Animation Logic --- */
+        
+        /* 1. The Ring SVG Container */
+        .skill-ring-svg-container {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .skill-item:hover .skill-ring-svg-container {
+            opacity: 1;
+            filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.5));
+            filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.6));
+        }
+
+        /* 2. The Progress Path Animation */
+        .skill-ring-circle {
+            transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+            stroke-dashoffset: var(--circumference); /* Start empty */
+        }
+
+        .skill-item:hover .skill-ring-circle {
+            stroke-dashoffset: var(--target-offset); /* Fill on hover */
+            box-shadow: 0 0 25px 5px rgba(6, 182, 212, 0.3);
+        }
+
+        /* 3. Icon Glow & Scale */
+        .skill-icon-wrapper {
+            transition: all 0.4s ease;
+            border-radius: 50%;
+        }
+        
+        .skill-item:hover .skill-icon-wrapper {
+            transform: scale(0.8);
+            /* box-shadow: 0 0 25px 5px rgba(6, 182, 212, 0.3); */ /* Removed Neon Cyan Glow */
+            background: rgba(6, 181, 212, 0);
+        }
+        
+        /* 4. Text Fade In */
+        .skill-percent {
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.3s ease 0.1s; /* Slight delay */
+        }
+
+        .skill-item:hover .skill-percent {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Badge Animation */
+        #lc-badge {
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .glass-card:hover #lc-badge {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
+<body class="antialiased">
 
-<body class="bg-black min-h-screen p-2">
-
-    <div class="bg-sky-300 rounded-lg min-h-screen w-full p-4 relative">
-        <!-- side bar - moved inside black section -->
-        <nav id="sidebar"
-            class="bg-black w-64 h-full fixed left-0 top-0 transform -translate-x-full transition-transform duration-300 rounded-l-lg z-50">
-            <div class="flex flex-col space-y-4 p-4">
-                <button onclick="toggleSidebar()" class="self-end text-2xl text-white">×</button>
-                <a href="#slide1" class="text-white py-2 px-2 hover:underline rounded" data-slide="1">About Me</a>
-                <a href="#slide2" class="text-white py-2 px-2 hover:underline rounded" data-slide="2">Projects</a>
-                <a href="#slide3" class="text-white py-2 px-2 hover:underline rounded" data-slide="3">Skills</a>
-                <a href="#slide4" class="text-white py-2 px-2 hover:underline rounded" data-slide="4">Competitve
-                    Programming</a>
-                <a href="#slide5" class="text-white py-2 px-2 hover:underline rounded" data-slide="5">Feedback</a>
-            </div>
-        </nav>
-
-        <!-- Toggle Button -->
-        <button id="toggleBtn" onclick="toggleSidebar()"
-            class="fixed top-4 left-4 z-50 bg-black rounded-md transition-all duration-300 text-white text-sm hover:bg-sky-900">
-            ☰
-        </button>
-
-        <!-- Main Content -->
-        <div class="ml-12 w-full">
-            <!-- Heading -->
-            <div class="grid grid-cols-3 gap-4 mb-8">
-                <div class="bg"></div>
-                <div class="bg grid justify-items-center">
-                    <h1 class="winky-rough-weight text-4xl font-bold text-white">Hello Visitor! This is Ipsit 👋</h1>
-                </div>
-            </div>
-
-            <!-- Carousel Section -->
-            <div class="grid grid-cols-12 gap-3">
-                <div class="col-span-2 relative">
-                    <!-- Left Navigation Arrow -->
-                    <button id="prevArrow" onclick="navigate(-1)"
-                        class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-sky-500 text-sky-900 px-6 py-4 rounded-lg hover:bg-sky-900 hover:text-white hover:shadow-9xl transition-all text-9xl font-bold">
-                        ←
-                    </button>
-                </div>
-                <div class="col-span-8 relative">
-                    <!-- Carousel Container -->
-                    <div class="snap-x snap-mandatory flex overflow-x-auto scrollbar-hide scroll-smooth w-full">
-                        <!-- Slide 1 -->
-                        <div class="min-w-full w-full flex-none">
-                            <div id="slide1" class="snap-start w-full flex-shrink-0">
-                                <!-- Slide Content -->
-                                <div
-                                    class="bg-black text-white p-4 rounded-xl relative h-[32rem] cursor-pointer group overflow-hidden">
-                                    <!-- Existing image wrapper and text container -->
-                                    <div
-                                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group-hover:top-6 group-hover:left-6 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-500 z-10">
-                                        <img src="media/profile_picture.png" alt="Your Photo"
-                                            class="w-48 h-48 rounded-full object-cover group-hover:w-24 group-hover:h-24 transition-all duration-500" />
-                                    </div>
-
-
-                                    <!-- Text Container (no extra group!) -->
-                                    <div class="absolute inset-x-0 bottom-0 p-6">
-                                        <div
-                                            class="transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 z-20">
-                                            <p class="text-base leading-relaxed text-white space-y-4">
-                                                I am a software engineer with a passion for building web applications. I
-                                                love to
-                                                learn new
-                                                technologies
-                                                and improve my skills.
-                                                In my free time, I enjoy getting involved in competitive
-                                                programming
-                                                and open
-                                                source projects. I am also a big fan of music and anime 😎.
-                                                Nice to meet you! I have
-                                                graduated from the
-                                                National Institute of Technology, Andhra Pradesh with a Bachelors in
-                                                Computer
-                                                Science and
-                                                Engineering.
-                                                I
-                                                have developed several projects using various technologies, involving
-                                                backend
-                                                development
-                                                with Django
-                                                and Node.js. I am also involved in core AI research and development.
-                                                I created a
-                                                model as
-                                                part of my
-                                                Bachelors final year project that can answer complex queries over
-                                                Knowledge Graphs
-                                                using
-                                                Laplace
-                                                distribution that performed better than the current state of the art
-                                                probabilistic
-                                                model.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- Slide 2 -->
-                        <div class="min-w-full w-full flex-none">
-                            <div id="slide2" class="snap-start w-full flex-shrink-0">
-                                <div class="bg-black text-white p-4 rounded-xl h-[32rem] flex flex-col">
-                                    <!-- Slide Content -->
-                                    <h2 class="text-2xl font-bold mb-4 text-center">Projects</h2>
-                                    <div id="projectGrid"
-                                        class="grid grid-cols-2 gap-4 justify-items-center items-center flex-grow">
-                                    </div>
-                                    <h2 class="text font-bold text-center">Liked them? <br> Connect me on GitHub to view
-                                        more of my works</h2>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- Slide 3 -->
-                        <div class="min-w-full w-full flex-none">
-                            <div id="slide3" class="snap-start w-full flex-shrink-0">
-                                <!-- Slide Content -->
-                                <div class="bg-black text-white p-4 rounded-xl h-[32rem]">
-                                    <h2 class="text-2xl font-bold mb-4 text-center">Skills</h2>
-                                    <div id="skills-grid" class="grid grid-cols-5 gap-3 px-6"></div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <!-- Slide 4 -->
-                        <div class="min-w-full w-full flex-none">
-                            <div id="slide4" class="snap-start w-full flex-shrink-0">
-                                <!-- Slide Content -->
-                                <div class="bg-black text-white p-4 rounded-xl h-[32rem]">
-                                    <h2 class="text-2xl font-bold text-center">Competitve Programming</h2>
-                                    <div class="grid grid-cols-2 gap-4 h-[32rem]">
-                                        <!-- LeetCode Section -->
-                                        <a href="http://www.leetcode.com/icode100" target="_blank" class="block h-full">
-                                            <div class="relative group overflow-visible h-full">
-                                                <div
-                                                    class="w-full h-full bg-black rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-[1.05] group-hover:z-20 relative">
-                                                    <img src="https://img.icons8.com/external-tal-revivo-shadow-tal-revivo/100/external-level-up-your-coding-skills-and-quickly-land-a-job-logo-shadow-tal-revivo.png" alt="LeetCode"
-                                                        class="w-24 h-24 transition-opacity duration-300 group-hover:opacity-0" />
-                                                    <div
-                                                        class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 px-4 py-6 flex flex-col gap-4 items-center justify-center z-10">
-                                                        <img id="lc-badge" src="" alt="Badge"
-                                                            class="w-16 h-16 hidden" />
-                                                        <p id="lc-badge-text"
-                                                            class="text-sm font-semibold text-white hidden"></p>
-                                                        <p class="text-lg font-semibold text-orange-400">Rating: <span
-                                                                id="lc-rating" class="text-white"></span>
-                                                        </p>
-                                                        <div x-data="{
-                                                                      percentile: 0,
-                                                                      totalParticipants: 692597,
-                                                                      async fetchData() {
-                                                                        const response = await fetch('data/leetcode_stats.json');
-                                                                        const data = await response.json();
-                                                                        this.percentile = data.data.userContestRanking.topPercentage;
-                                                                      },
-                                                                      layerColors(percentile) {
-                                                                        let levels = [0, 20, 40, 60, 80];
-                                                                        return levels.map(level => !(percentile <= level));
-                                                                      }
-                                                                    }" x-init="fetchData()"
-                                                            class="text-center p-1 rounded-xl"
-                                                            style="background: transparent;">
-                                                            <p class="text-sky-500 text-sm font-bold mb-2"
-                                                                x-text="'Top ' + percentile + '%'"></p>
-
-                                                            <!-- Smaller 100x100 Transparent Pyramid SVG -->
-                                                            <svg width="100" height="100" viewBox="0 0 200 200"
-                                                                class="mx-auto mb-2" style="background: transparent;">
-                                                                <polygon points="10,190 190,190 160,150 40,150"
-                                                                    :fill="layerColors(percentile)[4] ? '#3b82f6' : '#e5e7eb'" />
-                                                                <polygon points="40,150 160,150 140,110 60,110"
-                                                                    :fill="layerColors(percentile)[3] ? '#3b82f6' : '#d1d5db'" />
-                                                                <polygon points="60,110 140,110 125,80 75,80"
-                                                                    :fill="layerColors(percentile)[2] ? '#3b82f6' : '#9ca3af'" />
-                                                                <polygon points="75,80 125,80 110,50 90,50"
-                                                                    :fill="layerColors(percentile)[1] ? '#3b82f6' : '#6b7280'" />
-                                                                <polygon points="90,50 110,50 100,20"
-                                                                    :fill="layerColors(percentile)[0] ? '#3b82f6' : '#4b5563'" />
-                                                            </svg>
-
-                                                            <p class="text-white text-xs"
-                                                                x-text="'You’re in the top ' + percentile + '% of ' + new Intl.NumberFormat().format(totalParticipants) + ' LeetCode users.'">
-                                                            </p>
-                                                        </div>
-                                                        <p class="text-sm text-center text-white">Global Rank: <span
-                                                                id="lc-rank" class="font-bold text-white"></span><br />
-                                                            Out of <span id="lc-total"
-                                                                class="font-bold text-white"></span>
-                                                            participants</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                        <!-- CodeChef Section -->
-                                        <a href="http://www.codechef.com/users/icode100" target="_blank"
-                                            class="block h-full codechef-section">
-                                            <div class="relative group overflow-visible h-full">
-                                                <div
-                                                    class="w-full h-full bg-black rounded-xl flex items-center justify-center transition-all duration-500 group-hover:scale-[1.05] group-hover:z-20 relative">
-                                                    <img src="media/codechef-logo.png" alt="CodeChef"
-                                                        class="w-24 h-24 transition-opacity duration-300 group-hover:opacity-0" />
-                                                    <div
-                                                        class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 px-4 py-6 flex flex-col gap-4 items-center justify-center z-10">
-                                                        <p class="text-lg font-semibold text-orange-400">Rating: <span
-                                                                id="cc-rating" class="text-white"></span></p>
-                                                        <div class="flex gap-1 text-2xl" id="cc-stars"></div>
-                                                        <p class="text-sm text-center text-gray-400">Global Rank: <span
-                                                                id="cc-global" class="font-bold text-white"></span></p>
-                                                        <p class="text-sm text-center text-gray-400">Country Rank: <span
-                                                                id="cc-country" class="font-bold text-white"></span></p>
-                                                        <p id="cc-coder-level" class="text-sm text-center font-bold">
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- slide 5 -->
-
-                        <div class="min-w-full w-full flex-none">
-                            <div id="slide5" class="snap-start w-full flex-shrink-0">
-                                <!-- Slide Content -->
-                                <div class="bg-black text-white p-4 rounded-xl h-[32rem] flex flex-col justify-between">
-                                    <div>
-                                        <h2 class="text-2xl font-bold mb-4 text-center">Feedback</h2>
-                                        <h3 class="text font-bold mb-2 text-center">
-                                            Liked My Profile?<br> Here's my resume if you want to refer me
-                                        </h3>
-                                    </div>
-                                    <div class="flex items-center justify-center">
-                                        <a href='https://drive.google.com/uc?export=download&id=13HDSFezEFa6c4yTCZcUjaoZfVQkZRQ5X'
-                                            target="_blank" class="flex flex-col items-center justify-center">
-                                            <img width="100" height="100"
-                                                src="https://img.icons8.com/3d-fluency/1500/pdf.png" alt="pdf"
-                                                class="w-40 h-40 transition-transform duration-300 hover:scale-110" />
-                                            <p class="text-white text-lg font-bold mt-4">Download Resume</p>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <h3 class="text font-bold mb-2 text-center">
-                                            Have any Feedback? <br> Connect me on LinkedIn or Email
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- Navigation Dots -->
-                    <div class="flex justify-center space-x-2 mt-4">
-                        <a href="#slide1" class="w-10 h-2 rounded-full bg-black hover:bg-sky-700 transition-colors"
-                            data-slide="1"></a>
-                        <a href="#slide2" class="w-10 h-2 rounded-full bg-black hover:bg-sky-700 transition-colors"
-                            data-slide="2"></a>
-                        <a href="#slide3" class="w-10 h-2 rounded-full bg-black hover:bg-sky-700 transition-colors"
-                            data-slide="3"></a>
-                        <a href="#slide4" class="w-10 h-2 rounded-full bg-black hover:bg-sky-700 transition-colors"
-                            data-slide="4"></a>
-                        <a href="#slide5" class="w-10 h-2 rounded-full bg-black hover:bg-sky-700 transition-colors"
-                            data-slide="5"></a>
-                    </div>
-                </div>
-                <div class="col-span-2 relative">
-                    <!-- Right Navigation Arrow -->
-                    <button id="nextArrow" onclick="navigate(1)"
-                        class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-sky-500 text-sky-900 px-6 py-4 rounded-lg hover:bg-sky-900 hover:text-white transition-all text-9xl font-bold">
-                        →
-                    </button>
-                </div>
-            </div>
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="text-4xl font-bold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-600 animate-pulse">
+            LOADING SYSTEM...
         </div>
     </div>
 
-    <!-- Static Contact Pane -->
-    <div class="fixed bottom-0 left-0 w-full text-white py-4 flex justify-center space-x-6">
-        <div class="grid grid-cols-3 gap-20">
-            <div>
-                <!-- email -->
-                <a href="mailto:ipsit.das1@gmail.com" target="_blank" class="hover:text-red-700 transition-colors">
-                    <img width="30" height="30" src="https://img.icons8.com/3d-fluency/1500/filled-message.png"
-                        alt="filled-message" />
-                </a>
-            </div>
-            <div>
-                <!-- github -->
-                <a href="https://github.com/icode100" target="_blank" class="hover:text-red-700 transition-colors">
-                    <img width="30" height="30" src="https://img.icons8.com/3d-fluency/1500/github.png" alt="github" />
-                </a>
-            </div>
-            <div>
-                <!-- LinkedIn -->
-                <a href="https://linkedin.com/in/ipsit-das" target="_blank"
-                    class="hover:text-red-700 transition-colors">
-                    <img width="30" height="30" src="https://img.icons8.com/3d-fluency/150/linkedin--v1.png"
-                        alt="linkedin--v1" />
-                </a>
-            </div>
-        </div>
-    </div>
+    <!-- 3D Background -->
+    <canvas id="bg-canvas"></canvas>
 
+    <!-- Navigation -->
+    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-2xl">
+        <div class="glass-panel rounded-full px-6 py-3 flex justify-between items-center">
+            <a href="#" class="font-bold text-xl tracking-tighter text-white">IC<span class="text-cyan-400">100</span></a>
+            <div class="hidden md:flex space-x-1">
+                <a href="#about" class="nav-link px-4 py-1.5 rounded-full text-sm text-gray-300 transition-all duration-300">About</a>
+                <a href="#experience" class="nav-link px-4 py-1.5 rounded-full text-sm text-gray-300 transition-all duration-300">Experience</a>
+                <a href="#projects" class="nav-link px-4 py-1.5 rounded-full text-sm text-gray-300 transition-all duration-300">Projects</a>
+                <a href="#skills" class="nav-link px-4 py-1.5 rounded-full text-sm text-gray-300 transition-all duration-300">Skills</a>
+                <a href="#stats" class="nav-link px-4 py-1.5 rounded-full text-sm text-gray-300 transition-all duration-300">Stats</a>
+            </div>
+            <a href="#contact" class="px-5 py-2 rounded-full bg-gradient-to-r from-cyan-600 to-purple-600 text-xs font-bold tracking-wide hover:opacity-90 transition-opacity">
+                CONTACT
+            </a>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Button (Fixed bottom right) -->
+    <button class="md:hidden fixed bottom-6 right-6 z-50 glass-panel w-12 h-12 rounded-full flex items-center justify-center text-cyan-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+    </button>
+
+    <main class="container mx-auto px-6 relative z-10">
+        
+        <!-- Hero Section -->
+        <section id="about" class="min-h-screen flex flex-col items-center justify-center text-center pt-20">
+            <div class="relative w-40 h-40 md:w-56 md:h-56 mb-8 group perspective-1000">
+                <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full blur-2xl opacity-40 group-hover:opacity-60 transition-opacity duration-500 animate-pulse"></div>
+                <img src="media/profile_picture.png" alt="Profile" 
+                     class="relative w-full h-full object-cover rounded-full border-2 border-white/10 shadow-2xl transform transition-transform duration-700 group-hover:rotate-y-180">
+            </div>
+            
+            <div class="overflow-hidden">
+                <h2 class="text-cyan-400 font-mono text-sm md:text-base mb-4 tracking-widest reveal-text">HELLO WORLD, I AM</h2>
+            </div>
+            <div class="overflow-hidden">
+                <h1 class="text-5xl md:text-8xl font-black tracking-tighter mb-6 reveal-text">
+                    IPSIT <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">DAS</span>
+                </h1>
+            </div>
+            <p class="text-gray-400 max-w-xl text-lg md:text-xl leading-relaxed mb-10 reveal-text opacity-0 transform translate-y-4">
+                Software Engineer & Creative Developer. <br>
+                Building intelligent systems with <span class="text-white">Django, Node.js</span> & <span class="text-white">AI</span>.
+            </p>
+            
+            <div class="flex gap-4 reveal-text opacity-0 transform translate-y-4">
+                <a href="#projects" class="px-8 py-3 rounded-lg border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10 transition-all font-mono">
+                    VIEW WORK_
+                </a>
+                <a href="https://github.com/icode100" target="_blank" class="px-8 py-3 rounded-lg bg-white/5 hover:bg-white/10 transition-all flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+            
+            <div class="absolute bottom-10 animate-bounce">
+                <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20">
+            <h2 class="text-4xl md:text-6xl font-bold text-white mb-16 text-center">WORK <span class="text-gradient">EXPERIENCE</span></h2>
+            
+            <!-- Oracle 2025 to present -->
+            <div class="glass-card experience-card p-8 rounded-2xl relative overflow-hidden group max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8 opacity-0 translate-y-10">
+                <!-- Logo Container with Swap Logic -->
+                <div class="relative w-32 h-16 flex-shrink-1 overflow-hidden flex items-center">
+                     <img src='https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg'
+                          alt="Oracle" 
+                          id="oracle-logo"
+                          class="w-full h-full object-contain transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] transform origin-left scale-[4] translate-x-[14%] group-hover:scale-100 group-hover:translate-x-0" />
+                </div>
+                
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold text-white">Associate Technical | 2025 - present</h3>
+                    <p class="text-cyan-400 font-mono mb-4 text-sm tracking-wider">Oracle Financial Services Global Unit</p>
+                    <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+                        Developing core banking products (OBPM, OBBRN) using PL/SQL and Java to optimize transaction workflows and system stability for global financial institutions.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-32">
+            <div class="flex items-end gap-4 mb-16 px-4">
+                <h2 class="text-4xl md:text-6xl font-bold text-white">SELECTED<br><span class="text-gradient">WORKS</span></h2>
+                <div class="h-1 flex-grow bg-white/10 rounded-full mb-4"></div>
+            </div>
+            
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project Cards Injected by JS -->
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20">
+            <div class="glass-panel rounded-3xl p-8 md:p-12 text-center">
+                <h2 class="text-3xl font-bold mb-12">TECHNOLOGY STACK</h2>
+                <div id="skills-container" class="flex flex-wrap justify-center gap-6">
+                    <!-- Skills Injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats" class="py-32">
+            <h2 class="text-4xl font-bold mb-16 text-center">PROGRAMMING <span class="text-cyan-400">PERFORMANCE</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- LeetCode Card -->
+                <a href="https://leetcode.com/icode100" target="_blank" class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-orange-500/20 rounded-full blur-3xl group-hover:bg-orange-500/30 transition-all"></div>
+                    
+                    <!-- Badge Image Container -->
+                    <div class="absolute top-4 right-4 z-20 pointer-events-none">
+                        <img id="lc-badge" src="" alt="Badge" class="w-24 h-24 object-contain opacity-0 group-hover:opacity-100" />
+                    </div>
+
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png" class="w-10 h-10 invert">
+                        <h3 class="text-2xl font-bold">LeetCode</h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-widest mb-1">Rating</p>
+                            <p id="lc-rating" class="text-4xl font-mono font-bold text-white counter">0</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-widest mb-1">Global Rank</p>
+                            <p id="lc-rank" class="text-4xl font-mono font-bold text-white">Loading...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <div class="flex justify-between text-xs text-gray-400 mb-2">
+                            <span>Percentile</span>
+                            <span id="lc-percentile-text">Top 0%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 rounded-full h-1 overflow-hidden">
+                            <div id="lc-bar" class="bg-orange-500 h-full rounded-full w-0 transition-all duration-1000"></div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- CodeChef Card -->
+                <a href="https://www.codechef.com/users/icode100" target="_blank" class="glass-card p-8 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-yellow-600/20 rounded-full blur-3xl group-hover:bg-yellow-600/30 transition-all"></div>
+                    
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="media/codechef-logo.png" class="w-10 h-10">
+                        <h3 class="text-2xl font-bold">CodeChef</h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-widest mb-1">Rating</p>
+                            <p id="cc-rating" class="text-4xl font-mono font-bold text-white counter">0</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 text-xs uppercase tracking-widest mb-1">Stars</p>
+                            <div id="cc-stars" class="text-2xl text-yellow-400 flex"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-white/10 grid grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-gray-500 text-xs">Global</p>
+                            <p id="cc-global" class="text-lg font-bold">--</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 text-xs">Country</p>
+                            <p id="cc-country" class="text-lg font-bold">--</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="py-20 text-center relative overflow-hidden">
+            <div class="glass-panel inline-block px-10 py-10 rounded-3xl relative z-10 max-w-2xl w-full">
+                <h2 class="text-3xl font-bold mb-6">Let's Build Something Amazing</h2>
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <a href="mailto:ipsit.das1@gmail.com" class="px-6 py-3 rounded-full bg-white text-black font-bold hover:bg-cyan-400 transition-colors">
+                        Send Email
+                    </a>
+                    <a href="https://drive.google.com/uc?export=download&id=13HDSFezEFa6c4yTCZcUjaoZfVQkZRQ5X" class="px-6 py-3 rounded-full border border-white/20 hover:bg-white/10 transition-colors">
+                        Download Resume
+                    </a>
+                </div>
+                <div class="flex justify-center gap-6">
+                    <a href="https://github.com/icode100" class="text-gray-400 hover:text-white transition-colors text-2xl"><i class="fab fa-github"></i>GitHub</a>
+                    <a href="https://linkedin.com/in/ipsit-das" class="text-gray-400 hover:text-white transition-colors text-2xl">LinkedIn</a>
+                </div>
+            </div>
+            
+            <p class="text-gray-600 text-sm mt-12">&copy; 2025 Ipsit Das. Crafted with Three.js & Tailwind.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- 1. Data Definitions ---
+        const projects = [
+            {
+                title: "Lape (KG Queries)",
+                desc: "Laplace distribution model for complex Knowledge Graph queries, outperforming state-of-the-art probabilistic models.",
+                tags: ["Python", "AI", "Research"],
+                link: "https://github.com/icode100/lape",
+                color: "from-purple-500 to-pink-500"
+            },
+            {
+                title: "AniCyGAN",
+                desc: "CycleGAN implementation generating anime characters from real photos. Trained on 2000+ image dataset.",
+                tags: ["PyTorch", "GANs", "CV"],
+                link: "https://github.com/icode100/anicygan",
+                color: "from-cyan-500 to-blue-500"
+            },
+            {
+                title: "Revsy",
+                desc: "Curated note-taking application designed for interview preparation and quick revision.",
+                tags: ["React", "Node", "Firebase"],
+                link: "https://github.com/icode100/Revsy",
+                color: "from-green-400 to-emerald-600"
+            },
+            {
+                title: "Hostel Management",
+                desc: "Full-stack Django & React system for managing hostel operations with SQLite integration.",
+                tags: ["Django", "React", "SQLite"],
+                link: "https://github.com/icode100/epic1",
+                color: "from-orange-400 to-red-500"
+            }
+        ];
+
+        const skills = [
+            { name: "DSA", icon: "media/dsa.png", percent: 90, title: "DS and Algo" },
+            { name: "Python", icon: "https://img.icons8.com/3d-fluency/1500/python.png", percent: 80, title: "Python" },
+            { name: "C++", icon: "https://img.icons8.com/fluency/1500/c-plus-plus-logo.png", percent: 60, title: "C++" },
+            { name: "Java", icon: "https://img.icons8.com/3d-fluency/1500/java-coffee-cup-logo.png", percent: 50, title: "Java" },
+            { name: "MySQL", icon: "https://img.icons8.com/color/1500/mysql-logo.png", percent: 70, title: "MySQL" },
+            { name: "MongoDB", icon: "https://img.icons8.com/color/1500/mongodb.png", percent: 70, title: "MongoDB" },
+            { name: "JavaScript", icon: "https://img.icons8.com/arcade/1500/javascript.png", percent: 40, title: "JavaScript" },
+            { name: "HTML", icon: "https://img.icons8.com/3d-fluency/1500/source-code.png", percent: 60, title: "HTML" },
+            { name: "Django", icon: "https://img.icons8.com/external-tal-revivo-green-tal-revivo/100/external-django-a-high-level-python-web-framework-that-encourages-rapid-development-logo-green-tal-revivo.png", percent: 40, title: "Django" },
+            { name: "NodeJS", icon: "https://img.icons8.com/color/1500/nodejs.png", percent: 60, title: "NodeJS" },
+            { name: "ReactJS", icon: "https://img.icons8.com/external-tal-revivo-color-tal-revivo/100/external-react-a-javascript-library-for-building-user-interfaces-logo-color-tal-revivo.png", percent: 65, title: "ReactJS" },
+            { name: "PyTorch", icon: "https://img.icons8.com/arcade/1500/pytorch.png", percent: 70, title: "PyTorch" },
+            { name: "Langchain", icon: "media/langchain-color.png", percent: 50, title: "Langchain" },
+            { name: "Hadoop", icon: "https://img.icons8.com/color/1500/hadoop-distributed-file-system.png", percent: 30, title: "Hadoop" },
+        ];
+
+        // --- 2. Render Functions ---
+        function renderProjects() {
+            const container = document.getElementById('project-grid');
+            container.innerHTML = projects.map((p, index) => `
+                <a href="${p.link}" target="_blank" class="glass-card rounded-xl overflow-hidden group flex flex-col h-full opacity-0 project-card" style="transition-delay: ${index * 100}ms">
+                    <div class="h-2 bg-gradient-to-r ${p.color}"></div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">${p.title}</h3>
+                        <p class="text-gray-400 mb-6 leading-relaxed flex-grow">${p.desc}</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            ${p.tags.map(t => `<span class="px-3 py-1 rounded-md text-xs font-medium bg-white/5 border border-white/10 text-gray-300">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        function renderSkills() {
+            const container = document.getElementById('skills-container');
+            const radius = 32;
+            const circumference = 2 * Math.PI * radius;
+
+            container.innerHTML = skills.map((s, index) => {
+                const dashOffset = circumference - (s.percent / 100) * circumference;
+                
+                return `
+                <div class="glass-card p-4 rounded-xl flex flex-col items-center gap-3 relative group w-32 skill-item opacity-0 cursor-pointer" 
+                     style="--target-offset: ${dashOffset}; --circumference: ${circumference};">
+
+                    <div class="relative w-20 h-20 flex items-center justify-center">
+                        <svg class="w-full h-full transform -rotate-90 skill-ring-svg-container">
+                            <!-- Background Circle -->
+                            <circle
+                                cx="50%" cy="50%" r="${radius}"
+                                stroke="rgba(255,255,255,0.1)"
+                                stroke-width="4"
+                                fill="transparent"
+                            />
+                            <!-- Progress Circle -->
+                            <circle
+                                class="skill-ring-circle"
+                                cx="50%" cy="50%" r="${radius}"
+                                stroke="#06b6d4"
+                                stroke-width="4"
+                                fill="transparent"
+                                stroke-dasharray="${circumference}"
+                                stroke-dashoffset="${circumference}" 
+                            />
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center skill-icon-wrapper">
+                            <img src="${s.icon}" alt="${s.name}" class="w-8 h-8 object-contain">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-sm font-bold text-white mb-1">${s.name}</p>
+                        <p class="text-xs text-cyan-400 font-mono font-bold skill-percent">${s.percent}%</p>
+                    </div>
+                </div>
+            `}).join('');
+        }
+
+        // --- 3. Animation Setup (GSAP + Three.js) ---
+        window.addEventListener('load', () => {
+            // Hide Loader
+            gsap.to("#loader", { opacity: 0, duration: 0.5, onComplete: () => document.getElementById("loader").style.display = "none" });
+
+            renderProjects();
+            renderSkills();
+
+            // Register ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero Animations
+            gsap.to(".reveal-text", {
+                y: 0,
+                opacity: 1,
+                stagger: 0.1,
+                duration: 1,
+                ease: "power4.out",
+                delay: 0.5
+            });
+
+            // Experience Card Animation
+            gsap.to(".experience-card", {
+                scrollTrigger: {
+                    trigger: "#experience",
+                    start: "top 75%",
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+
+            // Project Cards Animation
+            gsap.utils.toArray('.project-card').forEach(card => {
+                gsap.to(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                });
+            });
+
+            // Skill Items Fade In (Removed Ring Animation from here)
+            gsap.to(".skill-item", {
+                scrollTrigger: {
+                    trigger: "#skills",
+                    start: "top 75%"
+                },
+                opacity: 1,
+                y: 0,
+                stagger: 0.05,
+                duration: 0.5
+            });
+
+            // Fetch Data
+            fetchStats();
+        });
+
+        // --- 6. Active Nav Link on Scroll ---
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav .nav-link');
+
+        sections.forEach(section => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top center",
+                end: "bottom center",
+                onToggle: self => {
+                    if (self.isActive) {
+                        const id = section.getAttribute('id');
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        document.querySelector(`nav a[href="#${id}"]`).classList.add('active');
+                    }
+                }
+            });
+        });
+
+        // --- 4. Three.js Background (Interactive Particles) ---
+        const initThreeJS = () => {
+            const canvas = document.querySelector('#bg-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+
+            // Particles
+            const geometry = new THREE.BufferGeometry();
+            const particlesCount = 700;
+            const posArray = new Float32Array(particlesCount * 3);
+
+            for(let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 20; // Spread particles
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 0.02,
+                color: 0x06b6d4,
+                transparent: true,
+                opacity: 0.8,
+            });
+
+            const particlesMesh = new THREE.Points(geometry, material);
+            scene.add(particlesMesh);
+
+            camera.position.z = 3;
+
+            // Mouse Interaction
+            let mouseX = 0;
+            let mouseY = 0;
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = event.clientX / window.innerWidth - 0.5;
+                mouseY = event.clientY / window.innerHeight - 0.5;
+            });
+
+            // Animation Loop
+            const clock = new THREE.Clock();
+
+            const animate = () => {
+                const elapsedTime = clock.getElapsedTime();
+
+                // Rotate entire system slightly
+                particlesMesh.rotation.y = elapsedTime * 0.05;
+                particlesMesh.rotation.x = mouseY * 0.5;
+                particlesMesh.rotation.y += mouseX * 0.5;
+
+                renderer.render(scene, camera);
+                window.requestAnimationFrame(animate);
+            };
+
+            animate();
+
+            // Resize Handler
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        };
+
+        initThreeJS();
+
+        // --- 5. Data Fetching & Counter Animation ---
+        async function fetchStats() {
+            // Helper to animate numbers
+            const animateCounter = (id, endValue) => {
+                const obj = { val: 0 };
+                gsap.to(obj, {
+                    val: endValue,
+                    duration: 2,
+                    ease: "power2.out",
+                    onUpdate: () => {
+                        document.getElementById(id).textContent = Math.round(obj.val);
+                    }
+                });
+            };
+
+            try {
+                // LeetCode
+                const lcRes = await fetch('data/leetcode_stats.json');
+                const lcData = await lcRes.json();
+                
+                // Parsing logic
+                const lcStats = lcData.data.userContestRanking;
+
+                if (lcStats) {
+                    animateCounter("lc-rating", Math.round(lcStats.rating));
+                    document.getElementById("lc-rank").textContent = lcStats.globalRanking.toLocaleString();
+                    
+                    const topPercent = lcStats.topPercentage;
+                    document.getElementById("lc-percentile-text").textContent = `Top ${topPercent}%`;
+                    setTimeout(() => {
+                        document.getElementById("lc-bar").style.width = `${100 - topPercent}%`;
+                    }, 500);
+
+                    // --- Badge Logic Added Here ---
+                    // Explicitly check if userContestRanking (lcStats) has 'badge' key
+                    if (lcStats.badge && lcStats.badge.name) {
+                        const badgeName = lcStats.badge.name;
+                        const badgeImg = document.getElementById('lc-badge');
+
+                        if (badgeName === 'Knight') {
+                            badgeImg.src = 'media/knight-badge.gif';
+                        } else if (badgeName === 'Guardian') {
+                            badgeImg.src = 'media/guardian-badge.gif';
+                        } else {
+                            // Hide for any other badge
+                            badgeImg.style.display = 'none';
+                        }
+                    } else {
+                        // Hide if no badge exists
+                        document.getElementById('lc-badge').style.display = 'none';
+                    }
+                }
+
+            } catch (e) { console.warn("LeetCode data fetch failed", e); }
+
+            try {
+                // CodeChef
+                const ccRes = await fetch('data/codechef_stats.json');
+                const ccData = await ccRes.json();
+
+                if (ccData) {
+                    animateCounter("cc-rating", ccData.rating);
+                    document.getElementById("cc-global").textContent = `#${ccData.global_rank.toLocaleString()}`;
+                    document.getElementById("cc-country").textContent = `#${ccData.country_rank.toLocaleString()}`;
+                    
+                    const starsDiv = document.getElementById("cc-stars");
+                    starsDiv.innerHTML = "★".repeat(ccData.stars);
+                }
+
+            } catch (e) { console.warn("CodeChef data fetch failed", e); }
+        }
+
+        // Adjust Oracle logo scaling
+        const oracleLogo = document.querySelector('#oracle-logo');
+        if (oracleLogo) {
+            oracleLogo.style.objectFit = 'contain';
+            oracleLogo.style.width = '110%';
+            oracleLogo.style.height = '100%';
+            oracleLogo.style.overflow = 'hidden';
+        }
+    </script>
 </body>
-
 </html>
