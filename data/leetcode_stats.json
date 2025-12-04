@@ -3,7 +3,7 @@
         "allQuestionsCount": [
             {
                 "difficulty": "All",
-                "count": 3763
+                "count": 3764
             },
             {
                 "difficulty": "Easy",
@@ -15,14 +15,14 @@
             },
             {
                 "difficulty": "Hard",
-                "count": 888
+                "count": 889
             }
         ],
         "userContestRanking": {
             "attendedContestsCount": 26,
             "rating": 1911.267,
-            "globalRanking": 30880,
-            "totalParticipants": 795343,
+            "globalRanking": 30992,
+            "totalParticipants": 796958,
             "topPercentage": 4.03,
             "badge": {
                 "name": "Knight"
@@ -34,8 +34,8 @@
                 "acSubmissionNum": [
                     {
                         "difficulty": "All",
-                        "count": 745,
-                        "submissions": 1796
+                        "count": 746,
+                        "submissions": 1797
                     },
                     {
                         "difficulty": "Easy",
@@ -49,8 +49,8 @@
                     },
                     {
                         "difficulty": "Hard",
-                        "count": 123,
-                        "submissions": 300
+                        "count": 124,
+                        "submissions": 301
                     }
                 ]
             }
