@@ -108,7 +108,18 @@
         .nav-link:hover {
             color: var(--neon-cyan);
             text-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
+        }
+
+        /* Active state for mobile menu links */
+        .mobile-link.active {
+            color: var(--neon-cyan) !important; /* Use !important to override hover state */
+            background: rgba(6, 182, 212, 0.1);
             box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+        }
+
+        .mobile-link:hover {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.7);
         }
 
         /* --- Skill Animation Logic --- */
@@ -181,7 +192,7 @@
     <!-- 3D Background -->
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Navigation -->
+    <!-- Desktop navigation -->
     <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-2xl">
         <div class="glass-panel rounded-full px-6 py-3 flex justify-between items-center">
             <a href="#" class="font-bold text-xl tracking-tighter text-white">IC<span class="text-cyan-400">100</span></a>
@@ -198,10 +209,25 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu Button (Fixed bottom right) -->
-    <button class="md:hidden fixed bottom-6 right-6 z-50 glass-panel w-12 h-12 rounded-full flex items-center justify-center text-cyan-400">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <!-- Mobile Menu Overlay (Hidden by default) -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-black/90 backdrop-blur-xl transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-center space-y-8 md:hidden">
+        <a href="#about" class="mobile-link text-3xl font-bold text-white hover:text-cyan-400 px-8 py-4 rounded-full transition-all duration-300">About</a>
+        <a href="#experience" class="mobile-link text-3xl font-bold text-white hover:text-cyan-400 px-8 py-4 rounded-full transition-all duration-300">Experience</a>
+        <a href="#projects" class="mobile-link text-3xl font-bold text-white hover:text-cyan-400 px-8 py-4 rounded-full transition-all duration-300">Projects</a>
+        <a href="#skills" class="mobile-link text-3xl font-bold text-white hover:text-cyan-400 px-8 py-4 rounded-full transition-all duration-300">Skills</a>
+        <a href="#stats" class="mobile-link text-3xl font-bold text-white hover:text-cyan-400 px-8 py-4 rounded-full transition-all duration-300">Stats</a>
+        <a href="#contact" class="mobile-link text-3xl font-bold text-white hover:text-cyan-400 px-8 py-4 rounded-full transition-all duration-300">Contact</a>
+    </div>
+
+    <!-- Mobile Menu Toggle Button (Visible on small screens) -->
+    <button id="mobile-menu-btn" class="md:hidden fixed bottom-6 right-6 z-50 glass-panel w-14 h-14 rounded-full flex items-center justify-center text-cyan-400 shadow-lg border border-white/10 bg-black/50 backdrop-blur-md">
+        <!-- Menu Icon -->
+        <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-opacity duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+        <!-- Close Icon (Hidden initially) -->
+        <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute opacity-0 transition-opacity duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
     </button>
 
@@ -364,6 +390,24 @@
             </div>
         </section>
 
+        <!-- Project Link Modal -->
+        <div id="project-modal" class="fixed inset-0 z-[60] bg-black/80 backdrop-blur-lg flex items-center justify-center p-4 hidden">
+            <div id="project-modal-content" class="glass-panel rounded-2xl p-8 max-w-sm w-full text-center relative transform scale-95 opacity-0 transition-all duration-300">
+                <h3 id="project-modal-title" class="text-2xl font-bold mb-6"></h3>
+                <div class="flex flex-col gap-4">
+                    <a id="project-modal-website" href="#" target="_blank" class="block w-full px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-600 to-purple-600 font-bold hover:opacity-90 transition-opacity">
+                        View Live Site
+                    </a>
+                    <a id="project-modal-github" href="#" target="_blank" class="block w-full px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 transition-colors">
+                        View on GitHub
+                    </a>
+                </div>
+                <button id="project-modal-close" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+        </div>
+
         <!-- Footer -->
         <footer id="contact" class="py-20 text-center relative overflow-hidden">
             <div class="glass-panel inline-block px-10 py-10 rounded-3xl relative z-10 max-w-2xl w-full">
@@ -395,6 +439,7 @@
                 desc: "Laplace distribution model for complex Knowledge Graph queries, outperforming state-of-the-art probabilistic models.",
                 tags: ["Python", "AI", "Research"],
                 link: "https://github.com/icode100/lape",
+                website:'',
                 color: "from-purple-500 to-pink-500"
             },
             {
@@ -402,6 +447,7 @@
                 desc: "CycleGAN implementation generating anime characters from real photos. Trained on 2000+ image dataset.",
                 tags: ["PyTorch", "GANs", "CV"],
                 link: "https://github.com/icode100/anicygan",
+                website:'https://anicygan.streamlit.app/',
                 color: "from-cyan-500 to-blue-500"
             },
             {
@@ -409,6 +455,7 @@
                 desc: "Curated note-taking application designed for interview preparation and quick revision.",
                 tags: ["React", "Node", "Firebase"],
                 link: "https://github.com/icode100/Revsy",
+                website:'https://revsy.vercel.app/',
                 color: "from-green-400 to-emerald-600"
             },
             {
@@ -416,6 +463,7 @@
                 desc: "Full-stack Django & React system for managing hostel operations with SQLite integration.",
                 tags: ["Django", "React", "SQLite"],
                 link: "https://github.com/icode100/epic1",
+                website:'',
                 color: "from-orange-400 to-red-500"
             }
         ];
@@ -441,7 +489,7 @@
         function renderProjects() {
             const container = document.getElementById('project-grid');
             container.innerHTML = projects.map((p, index) => `
-                <a href="${p.link}" target="_blank" class="glass-card rounded-xl overflow-hidden group flex flex-col h-full opacity-0 project-card" style="transition-delay: ${index * 100}ms">
+                <div data-project-index="${index}" class="glass-card rounded-xl overflow-hidden group flex flex-col h-full opacity-0 project-card cursor-pointer" style="transition-delay: ${index * 100}ms">
                     <div class="h-2 bg-gradient-to-r ${p.color}"></div>
                     <div class="p-8 flex flex-col flex-grow">
                         <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">${p.title}</h3>
@@ -450,7 +498,7 @@
                             ${p.tags.map(t => `<span class="px-3 py-1 rounded-md text-xs font-medium bg-white/5 border border-white/10 text-gray-300">${t}</span>`).join('')}
                         </div>
                     </div>
-                </a>
+                </div>
             `).join('');
         }
 
@@ -559,22 +607,31 @@
 
             // Fetch Data
             fetchStats();
+
+            // Add Project Card Click Listeners
+            setupProjectModal();
         });
 
         // --- 6. Active Nav Link on Scroll ---
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('nav .nav-link');
+        const mobileNavLinks = document.querySelectorAll('#mobile-menu .mobile-link');
 
         sections.forEach(section => {
             ScrollTrigger.create({
                 trigger: section,
                 start: "top center",
                 end: "bottom center",
+                // Use onEnter and onLeaveBack for more consistent behavior
                 onToggle: self => {
                     if (self.isActive) {
                         const id = section.getAttribute('id');
+                        // Update desktop links
                         navLinks.forEach(link => link.classList.remove('active'));
                         document.querySelector(`nav a[href="#${id}"]`).classList.add('active');
+                        // Update mobile links
+                        mobileNavLinks.forEach(link => link.classList.remove('active'));
+                        document.querySelector(`#mobile-menu a[href="#${id}"]`).classList.add('active');
                     }
                 }
             });
@@ -728,6 +785,84 @@
             oracleLogo.style.width = '110%';
             oracleLogo.style.height = '100%';
             oracleLogo.style.overflow = 'hidden';
+        }
+
+        // --- 6. Mobile Menu Logic ---
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('translate-x-full');
+                menuIcon.classList.add('opacity-0');
+                closeIcon.classList.remove('opacity-0');
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                menuIcon.classList.remove('opacity-0');
+                closeIcon.classList.add('opacity-0');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+    </script>
+
+    <script>
+        // --- 7. Project Modal Logic ---
+        function setupProjectModal() {
+            const modal = document.getElementById('project-modal');
+            const modalContent = document.getElementById('project-modal-content');
+            const modalTitle = document.getElementById('project-modal-title');
+            const websiteLink = document.getElementById('project-modal-website');
+            const githubLink = document.getElementById('project-modal-github');
+            const closeBtn = document.getElementById('project-modal-close');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            function openModal(project) {
+                modalTitle.textContent = project.title;
+                websiteLink.href = project.website;
+                githubLink.href = project.link;
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modalContent.classList.remove('scale-95', 'opacity-0');
+                }, 10); // Small delay for transition
+            }
+
+            function closeModal() {
+                modalContent.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300); // Match transition duration
+            }
+
+            projectCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const projectIndex = card.getAttribute('data-project-index');
+                    const project = projects[projectIndex];
+
+                    if (project.website && project.website.trim() !== '') {
+                        openModal(project);
+                    } else {
+                        window.open(project.link, '_blank');
+                    }
+                });
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
         }
     </script>
 </body>
