@@ -21,8 +21,8 @@
         "userContestRanking": {
             "attendedContestsCount": 26,
             "rating": 1911.267,
-            "globalRanking": 31153,
-            "totalParticipants": 800234,
+            "globalRanking": 31236,
+            "totalParticipants": 802558,
             "topPercentage": 4.04,
             "badge": {
                 "name": "Knight"
@@ -34,8 +34,8 @@
                 "acSubmissionNum": [
                     {
                         "difficulty": "All",
-                        "count": 762,
-                        "submissions": 1819
+                        "count": 763,
+                        "submissions": 1821
                     },
                     {
                         "difficulty": "Easy",
@@ -44,8 +44,8 @@
                     },
                     {
                         "difficulty": "Medium",
-                        "count": 501,
-                        "submissions": 1278
+                        "count": 502,
+                        "submissions": 1280
                     },
                     {
                         "difficulty": "Hard",
